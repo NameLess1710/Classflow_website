@@ -1,31 +1,29 @@
 import { useSyncExternalStore } from "react";
 
-type Updater<T> = T | ((prev: T) => T);
-
 /**
  * Tiny localStorage-backed store shared across components.
  * Values load lazily on first browser access, so it is only read after hydration
  * (the student layout renders its pages client-side once hydrated).
  */
-export function createPersistedStore<T>(key: string, init: () => T) {
+export function createPersistedStore(key, init) {
   const storageKey = `campuspulse:${key}`;
-  let value: T | undefined;
-  const listeners = new Set<() => void>();
+  let value;
+  const listeners = new Set();
 
-  const load = (): T => {
+  const load = () => {
     if (value !== undefined) return value;
     if (typeof window === "undefined") return init();
     try {
       const raw = window.localStorage.getItem(storageKey);
-      value = raw ? (JSON.parse(raw) as T) : init();
+      value = raw ? JSON.parse(raw) : init();
     } catch {
       value = init();
     }
-    return value as T;
+    return value;
   };
 
-  const set = (next: Updater<T>) => {
-    value = typeof next === "function" ? (next as (p: T) => T)(load()) : next;
+  const set = (next) => {
+    value = typeof next === "function" ? next(load()) : next;
     try {
       window.localStorage.setItem(storageKey, JSON.stringify(value));
     } catch {
@@ -44,14 +42,14 @@ export function createPersistedStore<T>(key: string, init: () => T) {
     listeners.forEach((l) => l());
   };
 
-  const subscribe = (listener: () => void) => {
+  const subscribe = (listener) => {
     listeners.add(listener);
     return () => listeners.delete(listener);
   };
 
   function useStore() {
     const v = useSyncExternalStore(subscribe, load, load);
-    return [v, set] as const;
+    return [v, set];
   }
 
   return { useStore, get: load, set, reset };

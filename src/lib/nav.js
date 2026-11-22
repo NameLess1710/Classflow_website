@@ -10,29 +10,9 @@ import {
   Calculator,
   UserCog,
   Clock,
-  type LucideIcon,
 } from "lucide-react";
 
-export interface NavItem {
-  to:
-    | "/dashboard"
-    | "/notices"
-    | "/notes"
-    | "/assignments"
-    | "/timetable"
-    | "/exams"
-    | "/calendar"
-    | "/attendance"
-    | "/cgpa"
-    | "/ask-ai"
-    | "/profile";
-  label: string;
-  description: string;
-  icon: LucideIcon;
-  group: "Overview" | "Academics" | "Planning" | "Tools" | "Account";
-}
-
-export const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS = [
   { to: "/dashboard", label: "Dashboard", description: "Your day at a glance", icon: LayoutDashboard, group: "Overview" },
   { to: "/notices", label: "Notices", description: "College announcements", icon: Bell, group: "Overview" },
   { to: "/notes", label: "Study Notes", description: "Notes & documents", icon: BookOpen, group: "Academics" },
@@ -46,4 +26,4 @@ export const NAV_ITEMS: NavItem[] = [
   { to: "/profile", label: "Profile & Settings", description: "Your account", icon: UserCog, group: "Account" },
 ];
 
-export const NAV_GROUPS = ["Overview", "Academics", "Planning", "Tools", "Account"] as const;
+export const NAV_GROUPS = ["Overview", "Academics", "Planning", "Tools", "Account"];

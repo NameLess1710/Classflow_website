@@ -1,17 +1,4 @@
-/**
- * Pre-written sample conversations for the Ask CampusPulse AI demo.
- * Nothing here is generated: the UI labels every reply as a demo placeholder
- * until a real AI backend is connected.
- */
-export interface SamplePrompt {
-  id: string;
-  label: string;
-  category: "Study" | "Planning" | "Campus";
-  prompt: string;
-  sampleAnswer: string;
-}
-
-export const SAMPLE_PROMPTS: SamplePrompt[] = [
+export const SAMPLE_PROMPTS = [
   {
     id: "p1",
     label: "DBMS revision plan",

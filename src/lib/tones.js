@@ -1,6 +1,4 @@
-import type { EventKind, NoticeCategory, Priority } from "./types";
-
-export const noticeTone: Record<NoticeCategory, string> = {
+export const noticeTone = {
   Academic: "bg-primary/15 text-primary border-primary/30",
   Exam: "bg-destructive/15 text-destructive border-destructive/30",
   Events: "bg-cyan/15 text-cyan border-cyan/30",
@@ -9,13 +7,13 @@ export const noticeTone: Record<NoticeCategory, string> = {
   Library: "bg-muted text-muted-foreground border-border",
 };
 
-export const priorityTone: Record<Priority, string> = {
+export const priorityTone = {
   High: "bg-destructive/15 text-destructive border-destructive/30",
   Medium: "bg-warning/15 text-warning border-warning/30",
   Low: "bg-cyan/15 text-cyan border-cyan/30",
 };
 
-export const eventTone: Record<EventKind, { chip: string; dot: string }> = {
+export const eventTone = {
   Holiday: { chip: "bg-success/15 text-success border-success/30", dot: "bg-success" },
   Exam: { chip: "bg-destructive/15 text-destructive border-destructive/30", dot: "bg-destructive" },
   Event: { chip: "bg-cyan/15 text-cyan border-cyan/30", dot: "bg-cyan" },
@@ -23,13 +21,13 @@ export const eventTone: Record<EventKind, { chip: string; dot: string }> = {
   Academic: { chip: "bg-primary/15 text-primary border-primary/30", dot: "bg-primary" },
 };
 
-export function attendanceTone(percent: number, threshold: number): "success" | "warning" | "destructive" {
+export function attendanceTone(percent, threshold) {
   if (percent >= threshold + 5) return "success";
   if (percent >= threshold) return "warning";
   return "destructive";
 }
 
-export function initials(name: string) {
+export function initials(name) {
   return name
     .split(/\s+/)
     .filter(Boolean)

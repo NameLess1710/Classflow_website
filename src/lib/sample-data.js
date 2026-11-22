@@ -3,18 +3,6 @@
  * relative to today (module-scope Date is unsafe on the edge runtime).
  */
 import { isoDaysFromNow } from "./dates";
-import type {
-  AttendanceSubject,
-  Assignment,
-  CalendarEvent,
-  ClassSlot,
-  Exam,
-  Notice,
-  Profile,
-  Semester,
-  Settings,
-  StudyNote,
-} from "./types";
 
 export const COLLEGE_NAME = "Greenfield Institute of Technology";
 
@@ -25,7 +13,7 @@ export const SUBJECTS = [
   { code: "CS504", name: "Design & Analysis of Algorithms", faculty: "Dr. Vikram Nair" },
   { code: "CS505", name: "Software Engineering", faculty: "Prof. Sneha Patil" },
   { code: "HS501", name: "Professional Ethics", faculty: "Dr. Kavita Rao" },
-] as const;
+];
 
 export const SUBJECT_NAMES = SUBJECTS.map((s) => s.name);
 
@@ -38,7 +26,7 @@ export const DEPARTMENTS = [
   "Civil Engineering",
 ];
 
-export function defaultProfile(): Profile {
+export function defaultProfile() {
   return {
     name: "Aarav Sharma",
     email: "aarav.sharma@gitcollege.edu.in",
@@ -54,7 +42,7 @@ export function defaultProfile(): Profile {
   };
 }
 
-export function defaultSettings(): Settings {
+export function defaultSettings() {
   return {
     attendanceThreshold: 75,
     emailNotices: true,
@@ -64,7 +52,7 @@ export function defaultSettings(): Settings {
   };
 }
 
-export function sampleNotices(): Notice[] {
+export function sampleNotices() {
   return [
     {
       id: "n1",
@@ -145,7 +133,7 @@ export function sampleNotices(): Notice[] {
   ];
 }
 
-export function sampleNotes(): StudyNote[] {
+export function sampleNotes() {
   return [
     {
       id: "d1",
@@ -209,7 +197,7 @@ export function sampleNotes(): StudyNote[] {
   ];
 }
 
-export function sampleAssignments(): Assignment[] {
+export function sampleAssignments() {
   return [
     {
       id: "a1",
@@ -281,17 +269,17 @@ export function sampleAssignments(): Assignment[] {
   ];
 }
 
-export function sampleTimetable(): ClassSlot[] {
+export function sampleTimetable() {
   const s = (
-    id: string,
-    day: string,
-    start: string,
-    end: string,
-    code: string,
-    room: string,
-    type: ClassSlot["type"] = "Lecture",
-  ): ClassSlot => {
-    const sub = SUBJECTS.find((x) => x.code === code)!;
+    id,
+    day,
+    start,
+    end,
+    code,
+    room,
+    type = "Lecture",
+  ) => {
+    const sub = SUBJECTS.find((x) => x.code === code);
     return {
       id,
       day,
@@ -330,7 +318,7 @@ export function sampleTimetable(): ClassSlot[] {
   ];
 }
 
-export function sampleExams(): Exam[] {
+export function sampleExams() {
   return [
     {
       id: "e1",
@@ -413,9 +401,9 @@ export function sampleExams(): Exam[] {
   ];
 }
 
-export function sampleCalendarEvents(): CalendarEvent[] {
+export function sampleCalendarEvents() {
   const year = new Date().getFullYear();
-  const fixed: CalendarEvent[] = [
+  const fixed = [
     { id: "c1", title: "Guru Nanak Jayanti", date: `${year}-11-24`, kind: "Holiday" },
     { id: "c2", title: "Christmas", date: `${year}-12-25`, kind: "Holiday" },
     { id: "c3", title: "New Year's Day", date: `${year + 1}-01-01`, kind: "Holiday" },
@@ -432,7 +420,7 @@ export function sampleCalendarEvents(): CalendarEvent[] {
     { id: "c7", title: "Winter vacation", date: `${year}-12-21`, endDate: `${year + 1}-01-03`, kind: "Holiday" },
     { id: "c8", title: "Even semester classes begin", date: `${year + 1}-01-05`, kind: "Academic" },
   ];
-  const relative: CalendarEvent[] = [
+  const relative = [
     { id: "r1", title: "Attendance verification deadline", date: isoDaysFromNow(2), kind: "Deadline" },
     { id: "r2", title: "Mid-semester examinations", date: isoDaysFromNow(6), endDate: isoDaysFromNow(9), kind: "Exam" },
     { id: "r3", title: "TechNova 2026 technical fest", date: isoDaysFromNow(12), endDate: isoDaysFromNow(13), kind: "Event" },
@@ -443,7 +431,7 @@ export function sampleCalendarEvents(): CalendarEvent[] {
   return [...relative, ...fixed].sort((a, b) => a.date.localeCompare(b.date));
 }
 
-export function sampleAttendance(): AttendanceSubject[] {
+export function sampleAttendance() {
   return [
     { id: "s1", name: "Database Management Systems", code: "CS501", attended: 34, total: 40 },
     { id: "s2", name: "Operating Systems", code: "CS502", attended: 29, total: 38 },
@@ -454,7 +442,7 @@ export function sampleAttendance(): AttendanceSubject[] {
   ];
 }
 
-export function sampleSemesters(): Semester[] {
+export function sampleSemesters() {
   return [
     {
       id: "sem1",

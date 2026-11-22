@@ -1,5 +1,5 @@
 /** Per-page head() metadata for CampusPulse pages. */
-export function pageHead(title: string, description: string) {
+export function pageHead(title, description) {
   const full = `${title} — CampusPulse AI`;
   return {
     meta: [

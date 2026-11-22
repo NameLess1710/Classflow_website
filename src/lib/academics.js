@@ -2,15 +2,10 @@
 
 export const DEFAULT_ATTENDANCE_THRESHOLD = 75;
 
-export function attendancePercent(attended: number, total: number): number {
+export function attendancePercent(attended, total) {
   if (total <= 0) return 0;
   return (attended / total) * 100;
 }
-
-export type AttendanceStatus =
-  | { kind: "safe"; canMiss: number; percent: number }
-  | { kind: "short"; mustAttend: number; percent: number }
-  | { kind: "empty"; percent: 0 };
 
 /**
  * Attendance rule calculator.
@@ -19,10 +14,10 @@ export type AttendanceStatus =
  * Integer arithmetic avoids floating-point rounding at exact boundaries.
  */
 export function attendanceStatus(
-  attended: number,
-  total: number,
-  threshold: number = DEFAULT_ATTENDANCE_THRESHOLD,
-): AttendanceStatus {
+  attended,
+  total,
+  threshold = DEFAULT_ATTENDANCE_THRESHOLD,
+) {
   if (total <= 0) return { kind: "empty", percent: 0 };
   const a = Math.max(0, Math.min(attended, total));
   const percent = attendancePercent(a, total);
@@ -39,7 +34,7 @@ export function attendanceStatus(
 }
 
 /** 10-point grading scale used by most Indian universities. */
-export const GRADE_POINTS: Record<string, number> = {
+export const GRADE_POINTS = {
   O: 10,
   "A+": 9,
   A: 8,
@@ -52,13 +47,8 @@ export const GRADE_POINTS: Record<string, number> = {
 export const GRADES = Object.keys(GRADE_POINTS);
 export const MAX_GRADE_POINT = 10;
 
-export interface GradedCourse {
-  credits: number;
-  grade: string;
-}
-
 /** Credit-weighted grade point average for a set of courses (SGPA for one semester). */
-export function gpa(courses: GradedCourse[]): number {
+export function gpa(courses) {
   let credits = 0;
   let points = 0;
   for (const c of courses) {
@@ -70,19 +60,13 @@ export function gpa(courses: GradedCourse[]): number {
   return credits === 0 ? 0 : points / credits;
 }
 
-export function totalCredits(courses: GradedCourse[]): number {
+export function totalCredits(courses) {
   return courses.reduce((s, c) => (GRADE_POINTS[c.grade] !== undefined && c.credits > 0 ? s + c.credits : s), 0);
 }
 
 /** CGPA across semesters, weighted by credits (not a plain average of SGPAs). */
-export function cgpa(semesters: GradedCourse[][]): number {
+export function cgpa(semesters) {
   return gpa(semesters.flat());
-}
-
-export interface TargetResult {
-  requiredGpa: number;
-  feasible: boolean;
-  alreadyMet: boolean;
 }
 
 /**
@@ -90,11 +74,11 @@ export interface TargetResult {
  * to finish with the target CGPA.
  */
 export function requiredGpaForTarget(
-  currentCgpa: number,
-  completedCredits: number,
-  targetCgpa: number,
-  remainingCredits: number,
-): TargetResult {
+  currentCgpa,
+  completedCredits,
+  targetCgpa,
+  remainingCredits,
+) {
   if (remainingCredits <= 0) {
     return { requiredGpa: 0, feasible: currentCgpa >= targetCgpa, alreadyMet: currentCgpa >= targetCgpa };
   }
