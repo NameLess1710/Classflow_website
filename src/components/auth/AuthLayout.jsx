@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { BellRing, CalendarCheck2, ClipboardCheck, GraduationCap } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 
@@ -9,7 +8,7 @@ const highlights = [
   { icon: GraduationCap, title: "Plan your CGPA", text: "Simulate the grades you need for your target." },
 ];
 
-export function AuthLayout({ title, subtitle, children }: { title: string; subtitle: string; children: ReactNode }) {
+export function AuthLayout({ title, subtitle, children }) {
   return (
     <div className="grid min-h-screen bg-background lg:grid-cols-[1.05fr_1fr]">
       <aside className="relative hidden overflow-hidden border-r bg-gradient-hero lg:flex lg:flex-col lg:justify-between lg:p-12">
@@ -51,7 +50,7 @@ export function AuthLayout({ title, subtitle, children }: { title: string; subti
   );
 }
 
-export function FieldError({ message }: { message?: string | undefined }) {
+export function FieldError({ message }) {
   if (!message) return null;
   return <p className="mt-1.5 text-xs font-medium text-destructive">{message}</p>;
 }

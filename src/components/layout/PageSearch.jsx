@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/command";
 import { NAV_GROUPS, NAV_ITEMS } from "@/lib/nav";
 
-export function PageSearch({ open, onOpenChange }: { open: boolean; onOpenChange: (o: boolean) => void }) {
+export function PageSearch({ open, onOpenChange }) {
   const navigate = useNavigate();
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>

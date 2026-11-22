@@ -16,7 +16,7 @@ import { initials } from "@/lib/tones";
 import { sampleNotices } from "@/lib/sample-data";
 import { useMemo } from "react";
 
-export function Topbar({ onMenu, onLogout, onSearch }: { onMenu: () => void; onLogout: () => void; onSearch: () => void }) {
+export function Topbar({ onMenu, onLogout, onSearch }) {
   const [profile] = profileStore.useStore();
   const [read] = readNoticesStore.useStore();
   const pathname = useRouterState({ select: (s) => s.location.pathname });

@@ -1,7 +1,4 @@
-import type { LucideIcon } from "lucide-react";
-import type { ReactNode } from "react";
-
-export function EmptyState({ icon: Icon, title, description, action }: { icon: LucideIcon; title: string; description?: string; action?: ReactNode }) {
+export function EmptyState({ icon: Icon, title, description, action }) {
   return (
     <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed bg-surface px-6 py-12 text-center">
       <span className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-muted-foreground">

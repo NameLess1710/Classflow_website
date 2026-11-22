@@ -1,8 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, type LucideIcon } from "lucide-react";
-import type { ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { NavItem } from "@/lib/nav";
 
 export function SectionCard({
   title,
@@ -12,14 +10,6 @@ export function SectionCard({
   children,
   className,
   action,
-}: {
-  title: string;
-  icon?: LucideIcon;
-  linkTo?: NavItem["to"];
-  linkLabel?: string;
-  children: ReactNode;
-  className?: string;
-  action?: ReactNode;
 }) {
   return (
     <section className={cn("flex min-w-0 flex-col rounded-2xl border bg-card shadow-soft", className)}>

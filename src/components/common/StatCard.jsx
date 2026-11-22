@@ -1,4 +1,3 @@
-import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const tones = {
@@ -7,9 +6,7 @@ const tones = {
   success: "bg-success/15 text-success",
   warning: "bg-warning/15 text-warning",
   destructive: "bg-destructive/15 text-destructive",
-} as const;
-
-export type Tone = keyof typeof tones;
+};
 
 export function StatCard({
   label,
@@ -17,12 +14,6 @@ export function StatCard({
   hint,
   icon: Icon,
   tone = "primary",
-}: {
-  label: string;
-  value: string;
-  hint?: string;
-  icon: LucideIcon;
-  tone?: Tone;
 }) {
   return (
     <div className="rounded-2xl border bg-card p-4 shadow-soft sm:p-5">

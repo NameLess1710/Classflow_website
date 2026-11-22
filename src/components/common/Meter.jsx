@@ -7,12 +7,6 @@ export function Meter({
   tone = "primary",
   marker,
   className,
-}: {
-  value: number;
-  max?: number;
-  tone?: "primary" | "cyan" | "success" | "warning" | "destructive";
-  marker?: number;
-  className?: string;
 }) {
   const pct = Math.max(0, Math.min(100, (value / max) * 100));
   const bar = {

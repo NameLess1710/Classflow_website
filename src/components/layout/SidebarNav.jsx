@@ -4,7 +4,7 @@ import { Logo } from "@/components/brand/Logo";
 import { NAV_GROUPS, NAV_ITEMS } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
-export function SidebarNav({ onNavigate, onLogout }: { onNavigate?: () => void; onLogout: () => void }) {
+export function SidebarNav({ onNavigate, onLogout }) {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-16 items-center border-b px-5">

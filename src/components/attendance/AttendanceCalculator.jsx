@@ -9,12 +9,12 @@ import { attendancePercent, attendanceStatus } from "@/lib/academics";
 import { attendanceTone } from "@/lib/tones";
 import { cn } from "@/lib/utils";
 
-function toInt(v: string) {
+function toInt(v) {
   const n = parseInt(v, 10);
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
-export function AttendanceCalculator({ defaultThreshold }: { defaultThreshold: number }) {
+export function AttendanceCalculator({ defaultThreshold }) {
   const [attended, setAttended] = useState("42");
   const [total, setTotal] = useState("58");
   const [threshold, setThreshold] = useState(String(defaultThreshold));

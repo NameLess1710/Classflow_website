@@ -7,7 +7,7 @@ import { todayWeekday } from "@/lib/dates";
 import { cn } from "@/lib/utils";
 import { useMemo } from "react";
 
-export function TodayClasses({ className }: { className?: string }) {
+export function TodayClasses({ className }) {
   const slots = useMemo(() => sampleTimetable(), []);
   const today = todayWeekday();
   const list = todaysClasses(slots);

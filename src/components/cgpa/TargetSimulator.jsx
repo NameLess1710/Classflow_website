@@ -7,13 +7,13 @@ import { MAX_GRADE_POINT, requiredGpaForTarget } from "@/lib/academics";
 import { cgpaGoalStore } from "@/lib/stores";
 import { cn } from "@/lib/utils";
 
-export function TargetSimulator({ currentCgpa, completedCredits }: { currentCgpa: number; completedCredits: number }) {
+export function TargetSimulator({ currentCgpa, completedCredits }) {
   const [goal, setGoal] = cgpaGoalStore.useStore();
   const remainingCredits = goal.remainingSemesters * goal.creditsPerSemester;
   const result = requiredGpaForTarget(currentCgpa, completedCredits, goal.target, remainingCredits);
   const scenarios = [7, 8, 8.5, 9, 9.5, 10];
 
-  const projected = (sgpa: number) =>
+  const projected = (sgpa) =>
     completedCredits + remainingCredits === 0 ? 0 : (currentCgpa * completedCredits + sgpa * remainingCredits) / (completedCredits + remainingCredits);
 
   return (

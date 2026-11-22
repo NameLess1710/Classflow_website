@@ -1,7 +1,7 @@
 import { FlaskConical } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function DemoBadge({ label = "Demo placeholder", className }: { label?: string; className?: string }) {
+export function DemoBadge({ label = "Demo placeholder", className }) {
   return (
     <span
       className={cn(

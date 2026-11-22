@@ -2,7 +2,7 @@ import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 /** CampusPulse AI brand mark: a pulse line rising into a graduation-cap peak. */
-export function LogoMark({ className }: { className?: string }) {
+export function LogoMark({ className }) {
   const id = useId();
   return (
     <svg viewBox="0 0 40 40" className={cn("h-9 w-9 shrink-0", className)} aria-hidden="true">
@@ -26,7 +26,7 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
-export function Logo({ className, compact = false }: { className?: string; compact?: boolean }) {
+export function Logo({ className, compact = false }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <LogoMark />
