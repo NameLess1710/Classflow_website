@@ -36,7 +36,7 @@ function StudentShell() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
+    const onKey = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setSearchOpen((o) => !o);
@@ -63,7 +63,7 @@ function StudentShell() {
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
         <SheetContent side="left" className="w-72 bg-sidebar p-0 sm:max-w-xs">
           <SheetTitle className="sr-only">Navigation</SheetTitle>
-          <SheetDescription className="sr-only">Go to any CampusPulse page</SheetDescription>
+          <SheetDescription className="sr-only">Go to any Univo page</SheetDescription>
           <SidebarNav onNavigate={() => setMobileOpen(false)} onLogout={logout} />
         </SheetContent>
       </Sheet>

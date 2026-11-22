@@ -22,7 +22,7 @@ export const NAV_ITEMS = [
   { to: "/calendar", label: "Academic Calendar", description: "Holidays & events", icon: CalendarDays, group: "Planning" },
   { to: "/attendance", label: "Attendance Tracker", description: "75% rule calculator", icon: ClipboardCheck, group: "Tools" },
   { to: "/cgpa", label: "CGPA Calculator", description: "Grades & target goals", icon: Calculator, group: "Tools" },
-  { to: "/ask-ai", label: "Ask CampusPulse AI", description: "Study assistant (demo)", icon: Bot, group: "Tools" },
+  { to: "/ask-ai", label: "Ask Univo", description: "Study assistant (demo)", icon: Bot, group: "Tools" },
   { to: "/profile", label: "Profile & Settings", description: "Your account", icon: UserCog, group: "Account" },
 ];
 

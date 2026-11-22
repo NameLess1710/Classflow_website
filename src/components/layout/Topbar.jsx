@@ -32,7 +32,7 @@ export function Topbar({ onMenu, onLogout, onSearch }) {
         <LogoMark className="h-8 w-8" />
       </Link>
       <p className="hidden truncate font-display text-sm font-semibold text-muted-foreground sm:block lg:text-base lg:text-foreground">
-        {current?.label ?? "CampusPulse AI"}
+        {current?.label ?? "Univo"}
       </p>
 
       <div className="ml-auto flex items-center gap-1.5 sm:gap-2">

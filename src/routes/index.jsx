@@ -1,5 +1,5 @@
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { Eye, EyeOff, Info, LogIn } from "lucide-react";
 import { toast } from "sonner";
 import { AuthLayout, FieldError } from "@/components/auth/AuthLayout";
@@ -12,9 +12,9 @@ import { profileStore, sessionStore } from "@/lib/stores";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sign in — CampusPulse AI" },
-      { name: "description", content: "Sign in to CampusPulse AI to see your notices, deadlines, timetable, attendance and grades." },
-      { property: "og:title", content: "Sign in — CampusPulse AI" },
+      { title: "Sign in — Univo" },
+      { name: "description", content: "Sign in to Univo to see your notices, deadlines, timetable, attendance and grades." },
+      { property: "og:title", content: "Sign in — Univo" },
       { property: "og:description", content: "Your academic dashboard for college students." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -28,11 +28,11 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState({});
 
-  const submit = (e: FormEvent) => {
+  const submit = (e) => {
     e.preventDefault();
-    const next: typeof errors = {};
+    const next = {};
     if (!email.trim()) next.email = "Enter your college email or roll number";
     if (password.length < 6) next.password = "Password must be at least 6 characters";
     setErrors(next);
@@ -115,7 +115,7 @@ function LoginPage() {
       </div>
 
       <p className="mt-6 text-center text-sm text-muted-foreground">
-        New to CampusPulse?{" "}
+        New to Univo?{" "}
         <Link to="/register" className="font-semibold text-primary hover:underline">
           Create a student account
         </Link>

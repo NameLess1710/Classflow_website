@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { CalendarClock, ClipboardList, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -18,7 +18,6 @@ import { SUBJECT_NAMES } from "@/lib/sample-data";
 import { daysUntil, formatDate, isoDaysFromNow, relativeDayLabel } from "@/lib/dates";
 import { priorityTone } from "@/lib/tones";
 import { pageHead } from "@/lib/seo";
-import type { Assignment, Priority } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/assignments")({
@@ -26,11 +25,9 @@ export const Route = createFileRoute("/_student/assignments")({
   component: AssignmentsPage,
 });
 
-type Tab = "pending" | "completed" | "all";
-
 function AssignmentsPage() {
   const [items, setItems] = assignmentsStore.useStore();
-  const [tab, setTab] = useState<Tab>("pending");
+  const [tab, setTab] = useState("pending");
   const [adding, setAdding] = useState(false);
 
   const done = items.filter((a) => a.completed).length;
@@ -41,7 +38,7 @@ function AssignmentsPage() {
     .filter((a) => (tab === "all" ? true : tab === "completed" ? a.completed : !a.completed))
     .sort((a, b) => (tab === "completed" ? b.dueDate.localeCompare(a.dueDate) : a.dueDate.localeCompare(b.dueDate)));
 
-  const toggle = (id: string) => {
+  const toggle = (id) => {
     const target = items.find((a) => a.id === id);
     setItems((xs) =>
       xs.map((a) => {
@@ -54,12 +51,12 @@ function AssignmentsPage() {
     if (target) toast.success(target.completed ? "Moved back to pending" : "Marked as completed");
   };
 
-  const remove = (id: string) => {
+  const remove = (id) => {
     setItems((xs) => xs.filter((a) => a.id !== id));
     toast.success("Assignment removed");
   };
 
-  const tabs: { id: Tab; label: string; count: number }[] = [
+  const tabs = [
     { id: "pending", label: "Pending", count: pending },
     { id: "completed", label: "Completed", count: done },
     { id: "all", label: "All", count: items.length },
@@ -148,7 +145,7 @@ function AssignmentsPage() {
   );
 }
 
-function AssignmentRow({ a, onToggle, onRemove }: { a: Assignment; onToggle: () => void; onRemove: () => void }) {
+function AssignmentRow({ a, onToggle, onRemove }) {
   const d = daysUntil(a.dueDate);
   const dueText = a.completed
     ? `Completed${a.completedAt ? ` on ${formatDate(a.completedAt, "d MMM")}` : ""}`
@@ -186,15 +183,15 @@ function AssignmentRow({ a, onToggle, onRemove }: { a: Assignment; onToggle: () 
   );
 }
 
-function AddAssignmentDialog({ open, onOpenChange, onSave }: { open: boolean; onOpenChange: (o: boolean) => void; onSave: (a: Assignment) => void }) {
+function AddAssignmentDialog({ open, onOpenChange, onSave }) {
   const [title, setTitle] = useState("");
-  const [subject, setSubject] = useState<string>(SUBJECT_NAMES[0] ?? "");
+  const [subject, setSubject] = useState(SUBJECT_NAMES[0] ?? "");
   const [dueDate, setDueDate] = useState(() => isoDaysFromNow(7));
-  const [priority, setPriority] = useState<Priority>("Medium");
+  const [priority, setPriority] = useState("Medium");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
 
-  const submit = (e: FormEvent) => {
+  const submit = (e) => {
     e.preventDefault();
     if (!title.trim() || !dueDate) {
       setError("Add a title and due date.");
@@ -241,12 +238,12 @@ function AddAssignmentDialog({ open, onOpenChange, onSave }: { open: boolean; on
             </div>
             <div>
               <Label htmlFor="aprio">Priority</Label>
-              <Select value={priority} onValueChange={(v) => setPriority(v as Priority)}>
+              <Select value={priority} onValueChange={(v) => setPriority(v)}>
                 <SelectTrigger id="aprio" className="mt-1.5">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {(["High", "Medium", "Low"] as Priority[]).map((p) => (
+                  {["High", "Medium", "Low"].map((p) => (
                     <SelectItem key={p} value={p}>
                       {p}
                     </SelectItem>

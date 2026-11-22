@@ -22,7 +22,6 @@ import { sampleCalendarEvents } from "@/lib/sample-data";
 import { daysUntil, formatDate, relativeDayLabel } from "@/lib/dates";
 import { eventTone } from "@/lib/tones";
 import { pageHead } from "@/lib/seo";
-import type { CalendarEvent, EventKind } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/calendar")({
@@ -30,9 +29,9 @@ export const Route = createFileRoute("/_student/calendar")({
   component: CalendarPage,
 });
 
-const KINDS: EventKind[] = ["Academic", "Exam", "Deadline", "Event", "Holiday"];
+const KINDS = ["Academic", "Exam", "Deadline", "Event", "Holiday"];
 
-function eventsOn(day: Date, events: CalendarEvent[]) {
+function eventsOn(day, events) {
   return events.filter((e) => {
     const start = parseISO(e.date);
     const end = e.endDate ? parseISO(e.endDate) : start;
@@ -44,7 +43,7 @@ function CalendarPage() {
   const events = useMemo(() => sampleCalendarEvents(), []);
   const [month, setMonth] = useState(() => startOfMonth(new Date()));
   const [selected, setSelected] = useState(() => new Date());
-  const [hidden, setHidden] = useState<EventKind[]>([]);
+  const [hidden, setHidden] = useState([]);
 
   const visible = events.filter((e) => !hidden.includes(e.kind));
   const days = eachDayOfInterval({
@@ -54,7 +53,7 @@ function CalendarPage() {
   const selectedEvents = eventsOn(selected, visible);
   const upcoming = visible.filter((e) => daysUntil(e.endDate ?? e.date) >= 0).slice(0, 8);
 
-  const toggleKind = (k: EventKind) => setHidden((h) => (h.includes(k) ? h.filter((x) => x !== k) : [...h, k]));
+  const toggleKind = (k) => setHidden((h) => (h.includes(k) ? h.filter((x) => x !== k) : [...h, k]));
 
   return (
     <div>

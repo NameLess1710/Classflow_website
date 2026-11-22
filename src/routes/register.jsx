@@ -1,5 +1,5 @@
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { UserPlus } from "lucide-react";
 import { toast } from "sonner";
 import { AuthLayout, FieldError } from "@/components/auth/AuthLayout";
@@ -13,10 +13,10 @@ import { profileStore, sessionStore } from "@/lib/stores";
 export const Route = createFileRoute("/register")({
   head: () => ({
     meta: [
-      { title: "Create your student account — CampusPulse AI" },
-      { name: "description", content: "Register for CampusPulse AI with your roll number, department and year." },
-      { property: "og:title", content: "Create your student account — CampusPulse AI" },
-      { property: "og:description", content: "Join CampusPulse AI and manage your semester in one place." },
+      { title: "Create your student account — Univo" },
+      { name: "description", content: "Register for Univo with your roll number, department and year." },
+      { property: "og:title", content: "Create your student account — Univo" },
+      { property: "og:description", content: "Join Univo and manage your semester in one place." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -26,19 +26,9 @@ export const Route = createFileRoute("/register")({
 
 const YEARS = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
-type Form = {
-  name: string;
-  rollNo: string;
-  email: string;
-  department: string;
-  year: string;
-  password: string;
-  confirm: string;
-};
-
 function RegisterPage() {
   const navigate = useNavigate();
-  const [form, setForm] = useState<Form>({
+  const [form, setForm] = useState({
     name: "",
     rollNo: "",
     email: "",
@@ -47,12 +37,12 @@ function RegisterPage() {
     password: "",
     confirm: "",
   });
-  const [errors, setErrors] = useState<Partial<Record<keyof Form, string>>>({});
-  const set = (k: keyof Form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
+  const [errors, setErrors] = useState({});
+  const set = (k) => (v) => setForm((f) => ({ ...f, [k]: v }));
 
-  const submit = (e: FormEvent) => {
+  const submit = (e) => {
     e.preventDefault();
-    const next: typeof errors = {};
+    const next = {};
     if (form.name.trim().length < 2) next.name = "Enter your full name";
     if (!/^[A-Za-z0-9-]{4,15}$/.test(form.rollNo.trim())) next.rollNo = "Use 4–15 letters or numbers";
     if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) next.email = "Enter a valid email address";
@@ -77,7 +67,7 @@ function RegisterPage() {
       bio: "",
     });
     sessionStore.set({ loggedIn: true, email: form.email.trim() });
-    toast.success("Account created. Welcome to CampusPulse AI!");
+    toast.success("Account created. Welcome to Univo!");
     navigate({ to: "/dashboard" });
   };
 

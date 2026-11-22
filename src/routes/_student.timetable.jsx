@@ -4,10 +4,9 @@ import { Clock, MapPin, User } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Chip } from "@/components/common/Chip";
 import { sampleTimetable } from "@/lib/sample-data";
-import { WEEKDAYS, todayWeekday, type Weekday } from "@/lib/dates";
+import { WEEKDAYS, todayWeekday } from "@/lib/dates";
 import { classesFor, formatTime, slotState } from "@/lib/selectors";
 import { pageHead } from "@/lib/seo";
-import type { ClassSlot } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/timetable")({
@@ -15,7 +14,7 @@ export const Route = createFileRoute("/_student/timetable")({
   component: TimetablePage,
 });
 
-const typeTone: Record<ClassSlot["type"], string> = {
+const typeTone = {
   Lecture: "border-primary/30 bg-primary/10",
   Lab: "border-cyan/30 bg-cyan/10",
   Tutorial: "border-warning/30 bg-warning/10",
@@ -24,8 +23,8 @@ const typeTone: Record<ClassSlot["type"], string> = {
 function TimetablePage() {
   const slots = useMemo(() => sampleTimetable(), []);
   const today = todayWeekday();
-  const [day, setDay] = useState<Weekday>(today === "Sunday" ? "Monday" : today);
-  const [view, setView] = useState<"day" | "week">("day");
+  const [day, setDay] = useState(today === "Sunday" ? "Monday" : today);
+  const [view, setView] = useState("day");
   const dayClasses = classesFor(day, slots);
   const startTimes = Array.from(new Set(slots.map((s) => s.start))).sort();
 
@@ -37,7 +36,7 @@ function TimetablePage() {
         icon={Clock}
         actions={
           <div className="inline-flex rounded-xl border bg-card p-1">
-            {(["day", "week"] as const).map((v) => (
+            {["day", "week"].map((v) => (
               <button
                 key={v}
                 onClick={() => setView(v)}
@@ -55,7 +54,7 @@ function TimetablePage() {
       />
 
       <div className="mb-4 flex flex-wrap gap-3 text-xs text-muted-foreground">
-        {(Object.keys(typeTone) as ClassSlot["type"][]).map((t) => (
+        {Object.keys(typeTone).map((t) => (
           <span key={t} className="inline-flex items-center gap-1.5">
             <span className={cn("h-3 w-3 rounded border", typeTone[t])} /> {t}
           </span>

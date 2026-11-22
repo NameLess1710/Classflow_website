@@ -13,7 +13,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { GRADES, GRADE_POINTS, cgpa, gpa, totalCredits } from "@/lib/academics";
 import { newId, semestersStore } from "@/lib/stores";
 import { pageHead } from "@/lib/seo";
-import type { Course, Semester } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/cgpa")({
@@ -23,15 +22,15 @@ export const Route = createFileRoute("/_student/cgpa")({
 
 function CgpaPage() {
   const [semesters, setSemesters] = semestersStore.useStore();
-  const [open, setOpen] = useState<string | null>(() => semesters.at(-1)?.id ?? null);
+  const [open, setOpen] = useState(() => semesters.at(-1)?.id ?? null);
 
   const overall = cgpa(semesters.map((s) => s.courses));
   const credits = semesters.reduce((sum, s) => sum + totalCredits(s.courses), 0);
   const sgpas = semesters.map((s) => ({ name: s.name.replace("Semester ", "Sem "), sgpa: Number(gpa(s.courses).toFixed(2)) }));
   const best = sgpas.reduce((m, s) => Math.max(m, s.sgpa), 0);
 
-  const updateSem = (id: string, fn: (s: Semester) => Semester) => setSemesters((xs) => xs.map((s) => (s.id === id ? fn(s) : s)));
-  const updateCourse = (semId: string, courseId: string, patch: Partial<Course>) =>
+  const updateSem = (id, fn) => setSemesters((xs) => xs.map((s) => (s.id === id ? fn(s) : s)));
+  const updateCourse = (semId, courseId, patch) =>
     updateSem(semId, (s) => ({ ...s, courses: s.courses.map((c) => (c.id === courseId ? { ...c, ...patch } : c)) }));
 
   const addSemester = () => {

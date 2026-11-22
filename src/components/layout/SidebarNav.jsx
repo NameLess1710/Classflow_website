@@ -8,7 +8,7 @@ export function SidebarNav({ onNavigate, onLogout }) {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-16 items-center border-b px-5">
-        <Link to="/dashboard" onClick={onNavigate} aria-label="CampusPulse AI home">
+        <Link to="/dashboard" onClick={onNavigate} aria-label="Univo home">
           <Logo />
         </Link>
       </div>

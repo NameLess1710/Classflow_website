@@ -34,7 +34,7 @@ export function AuthLayout({ title, subtitle, children }) {
             ))}
           </ul>
         </div>
-        <p className="text-xs text-muted-foreground">© CampusPulse AI · Academic information, simplified</p>
+        <p className="text-xs text-muted-foreground">© Univo · Academic information, simplified</p>
       </aside>
       <main className="flex items-center justify-center px-5 py-10 sm:px-8">
         <div className="w-full max-w-md">

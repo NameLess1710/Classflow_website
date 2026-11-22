@@ -1,6 +1,6 @@
-/** Per-page head() metadata for CampusPulse pages. */
+/** Per-page head() metadata for Univo pages. */
 export function pageHead(title, description) {
-  const full = `${title} — CampusPulse AI`;
+  const full = `${title} — Univo`;
   return {
     meta: [
       { title: full },

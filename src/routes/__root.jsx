@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
@@ -6,9 +6,8 @@ import {
   useRouter,
   HeadContent,
   Scripts,
-  type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
@@ -36,7 +35,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: ErrorComponentProps) {
+function ErrorComponent({ error, reset }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -74,7 +73,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext()({
   head: () => ({
     // Replace these placeholders with the app's name and description when first building the app.
     // Each content route, / included, must still set its own head(). Never add og:image or
@@ -82,14 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "CampusPulse AI — Student Academic Hub" },
+      { title: "Univo — Student Academic Hub" },
       {
         name: "description",
         content:
-          "CampusPulse AI keeps college notices, notes, assignments, timetable, attendance and CGPA in one place.",
+          "Univo keeps college notices, notes, assignments, timetable, attendance and CGPA in one place.",
       },
       { name: "theme-color", content: "#0B1020" },
-      { property: "og:title", content: "CampusPulse AI — Student Academic Hub" },
+      { property: "og:title", content: "Univo — Student Academic Hub" },
       {
         property: "og:description",
         content: "Your academic dashboard for notices, notes, deadlines, attendance and grades.",
@@ -117,7 +116,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-function RootShell({ children }: { children: ReactNode }) {
+function RootShell({ children }) {
   return (
     <html lang="en" className="dark">
       <head>

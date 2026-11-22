@@ -78,7 +78,7 @@ function Dashboard() {
             </Button>
             <Button variant="outline" asChild>
               <Link to="/ask-ai">
-                <Bot /> Ask CampusPulse AI
+                <Bot /> Ask Univo
               </Link>
             </Button>
           </div>
@@ -131,7 +131,6 @@ function Dashboard() {
             </ul>
           )}
         </SectionCard>
-
 
       </div>
 

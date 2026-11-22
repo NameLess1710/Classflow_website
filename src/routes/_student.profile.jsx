@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { Bell, Mail, RotateCcw, Save, ShieldCheck, UserCog } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -25,7 +25,6 @@ import { DEPARTMENTS } from "@/lib/sample-data";
 import { profileStore, resetDemoData, settingsStore } from "@/lib/stores";
 import { initials } from "@/lib/tones";
 import { pageHead } from "@/lib/seo";
-import type { Profile, Settings } from "@/lib/types";
 
 export const Route = createFileRoute("/_student/profile")({
   head: () => pageHead("Profile & Settings", "Update your student profile, notification preferences and attendance requirement."),
@@ -38,13 +37,13 @@ const SEMESTERS = Array.from({ length: 8 }, (_, i) => `Semester ${i + 1}`);
 function ProfilePage() {
   const [profile, setProfile] = profileStore.useStore();
   const [settings, setSettings] = settingsStore.useStore();
-  const [draft, setDraft] = useState<Profile>(profile);
+  const [draft, setDraft] = useState(profile);
   const [error, setError] = useState("");
   const dirty = JSON.stringify(draft) !== JSON.stringify(profile);
 
-  const field = (k: keyof Profile) => (v: string) => setDraft((d) => ({ ...d, [k]: v }));
+  const field = (k) => (v) => setDraft((d) => ({ ...d, [k]: v }));
 
-  const save = (e: FormEvent) => {
+  const save = (e) => {
     e.preventDefault();
     if (draft.name.trim().length < 2) return setError("Name must be at least 2 characters.");
     if (!/^\S+@\S+\.\S+$/.test(draft.email.trim())) return setError("Enter a valid email address.");
@@ -53,7 +52,7 @@ function ProfilePage() {
     toast.success("Profile updated");
   };
 
-  const updateSetting = <K extends keyof Settings>(k: K, v: Settings[K]) => {
+  const updateSetting = (k, v) => {
     setSettings((s) => ({ ...s, [k]: v }));
     toast.success("Setting saved");
   };
@@ -220,13 +219,13 @@ function ProfilePage() {
 
           <SectionCard title="Notifications" icon={Bell}>
             <ul className="divide-y">
-              {(
+              {
                 [
                   ["emailNotices", "Email me important notices", "Exam and placement announcements", Mail],
                   ["deadlineReminders", "Assignment reminders", "A reminder 24 hours before each deadline", Bell],
                   ["examAlerts", "Exam alerts", "Reminders 3 days and 1 day before exams", ShieldCheck],
-                ] as const
-              ).map(([key, title, hint, Icon]) => (
+                ]
+              .map(([key, title, hint, Icon]) => (
                 <li key={key} className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
                   <div className="flex items-start gap-3">
                     <Icon className="mt-0.5 h-4 w-4 text-muted-foreground" />

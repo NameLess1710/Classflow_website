@@ -1,28 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bot, BookOpen, CalendarClock, Info, RotateCcw, Send, Sparkles, User } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { DemoBadge } from "@/components/common/DemoBadge";
 import { SectionCard } from "@/components/common/SectionCard";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { NOT_CONNECTED_REPLY, SAMPLE_PROMPTS, type SamplePrompt } from "@/lib/ai-demo";
+import { NOT_CONNECTED_REPLY, SAMPLE_PROMPTS } from "@/lib/ai-demo";
 import { profileStore } from "@/lib/stores";
 import { initials } from "@/lib/tones";
 import { pageHead } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/ask-ai")({
-  head: () => pageHead("Ask CampusPulse AI", "Preview the CampusPulse AI study assistant with interactive sample prompts. AI is not connected yet."),
+  head: () => pageHead("Ask Univo", "Preview the Univo study assistant with interactive sample prompts. AI is not connected yet."),
   component: AskAiPage,
 });
-
-interface Message {
-  id: number;
-  role: "user" | "assistant";
-  text: string;
-  kind?: "sample" | "not-connected";
-}
 
 const CAPABILITIES = [
   { icon: BookOpen, title: "Explain topics", text: "Simple explanations of tough concepts from your syllabus." },
@@ -32,16 +25,16 @@ const CAPABILITIES = [
 
 function AskAiPage() {
   const [profile] = profileStore.useStore();
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const counter = useRef(0);
-  const endRef = useRef<HTMLDivElement>(null);
+  const endRef = useRef(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages]);
 
-  const push = (userText: string, reply: Omit<Message, "id" | "role">) => {
+  const push = (userText, reply) => {
     setMessages((m) => [
       ...m,
       { id: ++counter.current, role: "user", text: userText },
@@ -49,9 +42,9 @@ function AskAiPage() {
     ]);
   };
 
-  const askSample = (p: SamplePrompt) => push(p.prompt, { text: p.sampleAnswer, kind: "sample" });
+  const askSample = (p) => push(p.prompt, { text: p.sampleAnswer, kind: "sample" });
 
-  const submit = (e: FormEvent) => {
+  const submit = (e) => {
     e.preventDefault();
     const text = input.trim();
     if (!text) return;
@@ -63,7 +56,7 @@ function AskAiPage() {
   return (
     <div>
       <PageHeader
-        title="Ask CampusPulse AI"
+        title="Ask Univo"
         description="Your future study assistant. This is a preview: replies are pre-written examples, not live AI answers."
         icon={Bot}
         actions={<DemoBadge label="Demo · AI not connected" />}
@@ -77,7 +70,7 @@ function AskAiPage() {
                 <Bot className="h-5 w-5" />
               </span>
               <div>
-                <p className="text-sm font-semibold">CampusPulse AI</p>
+                <p className="text-sm font-semibold">Univo</p>
                 <p className="text-xs text-muted-foreground">Preview mode · sample answers only</p>
               </div>
             </div>
@@ -95,7 +88,7 @@ function AskAiPage() {
                   <Sparkles className="h-7 w-7" />
                 </span>
                 <h2 className="text-lg font-semibold">Hi {profile.name.split(" ")[0]}, what would you like to try?</h2>
-                <p className="mt-1 max-w-md text-sm text-muted-foreground">Pick a sample prompt to see the kind of help CampusPulse AI will give once it's connected.</p>
+                <p className="mt-1 max-w-md text-sm text-muted-foreground">Pick a sample prompt to see the kind of help Univo will give once it's connected.</p>
                 <div className="mt-6 grid w-full max-w-2xl gap-2 sm:grid-cols-2">
                   {SAMPLE_PROMPTS.map((p) => (
                     <button

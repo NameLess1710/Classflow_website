@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { cn } from "@/lib/utils";
 
-/** CampusPulse AI brand mark: a pulse line rising into a graduation-cap peak. */
+/** Univo brand mark: a pulse line rising into a graduation-cap peak. */
 export function LogoMark({ className }) {
   const id = useId();
   return (
@@ -32,10 +32,7 @@ export function Logo({ className, compact = false }) {
       <LogoMark />
       {!compact && (
         <span className="font-display text-lg font-bold leading-none tracking-tight text-foreground">
-          CampusPulse
-          <span className="ml-1.5 rounded-md bg-gradient-brand px-1.5 py-0.5 align-middle text-xs font-bold text-cyan-foreground">
-            AI
-          </span>
+          Univo
         </span>
       )}
     </span>

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { AlertTriangle, CheckCircle2, ClipboardCheck, Minus, Pencil, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -15,7 +15,6 @@ import { attendanceStore, newId, settingsStore } from "@/lib/stores";
 import { overallAttendance } from "@/lib/selectors";
 import { attendanceTone } from "@/lib/tones";
 import { pageHead } from "@/lib/seo";
-import type { AttendanceSubject } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/attendance")({
@@ -27,23 +26,23 @@ function AttendancePage() {
   const [subjects, setSubjects] = attendanceStore.useStore();
   const [settings] = settingsStore.useStore();
   const threshold = settings.attendanceThreshold;
-  const [editing, setEditing] = useState<AttendanceSubject | "new" | null>(null);
+  const [editing, setEditing] = useState(null);
 
   const overall = overallAttendance(subjects);
   const statuses = subjects.map((s) => attendanceStatus(s.attended, s.total, threshold));
   const shortCount = statuses.filter((s) => s.kind === "short").length;
   const totalCanMiss = statuses.reduce((sum, s) => (s.kind === "safe" ? sum + s.canMiss : sum), 0);
 
-  const mark = (id: string, present: boolean) => {
+  const mark = (id, present) => {
     setSubjects((xs) => xs.map((s) => (s.id === id ? { ...s, total: s.total + 1, attended: s.attended + (present ? 1 : 0) } : s)));
     toast.success(present ? "Marked present" : "Marked absent");
   };
-  const undo = (id: string) => {
+  const undo = (id) => {
     setSubjects((xs) =>
       xs.map((s) => (s.id === id && s.total > 0 ? { ...s, total: s.total - 1, attended: Math.min(s.attended, s.total - 1) } : s)),
     );
   };
-  const remove = (id: string) => {
+  const remove = (id) => {
     setSubjects((xs) => xs.filter((s) => s.id !== id));
     toast.success("Subject removed");
   };
@@ -147,10 +146,6 @@ function SubjectDialog({
   subject,
   onClose,
   onSave,
-}: {
-  subject: AttendanceSubject | "new" | null;
-  onClose: () => void;
-  onSave: (s: AttendanceSubject) => void;
 }) {
   const existing = subject && subject !== "new" ? subject : null;
   const [name, setName] = useState(existing?.name ?? "");
@@ -159,7 +154,7 @@ function SubjectDialog({
   const [total, setTotal] = useState(String(existing?.total ?? 0));
   const [error, setError] = useState("");
 
-  const submit = (e: FormEvent) => {
+  const submit = (e) => {
     e.preventDefault();
     const a = parseInt(attended, 10) || 0;
     const t = parseInt(total, 10) || 0;

@@ -11,7 +11,6 @@ import { readNoticesStore } from "@/lib/stores";
 import { formatDate, relativeDayLabel } from "@/lib/dates";
 import { noticeTone } from "@/lib/tones";
 import { pageHead } from "@/lib/seo";
-import type { NoticeCategory } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/notices")({
@@ -19,14 +18,14 @@ export const Route = createFileRoute("/_student/notices")({
   component: NoticesPage,
 });
 
-const CATEGORIES: ("All" | NoticeCategory)[] = ["All", "Academic", "Exam", "Placement", "Events", "Hostel", "Library"];
+const CATEGORIES = ["All", "Academic", "Exam", "Placement", "Events", "Hostel", "Library"];
 
 function NoticesPage() {
   const notices = useMemo(() => sampleNotices(), []);
   const [read, setRead] = readNoticesStore.useStore();
-  const [category, setCategory] = useState<(typeof CATEGORIES)[number]>("All");
+  const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [openId, setOpenId] = useState(null);
 
   const filtered = notices
     .filter((n) => category === "All" || n.category === category)
@@ -35,7 +34,7 @@ function NoticesPage() {
 
   const unread = notices.filter((n) => !read.includes(n.id)).length;
 
-  const toggle = (id: string) => {
+  const toggle = (id) => {
     setOpenId((cur) => (cur === id ? null : id));
     if (!read.includes(id)) setRead((r) => [...r, id]);
   };

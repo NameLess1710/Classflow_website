@@ -21,7 +21,7 @@ export const SAMPLE_PROMPTS = [
     category: "Planning",
     prompt: "How many Operating Systems classes can I still skip?",
     sampleAnswer:
-      "With 29 of 38 classes attended (76.3%), you could skip 0 more classes and stay at 75%. Missing the next class would drop you to 74.4%.\n\nWhen connected, CampusPulse AI will read your live attendance. Meanwhile, the Attendance Tracker gives exact numbers for every subject.",
+      "With 29 of 38 classes attended (76.3%), you could skip 0 more classes and stay at 75%. Missing the next class would drop you to 74.4%.\n\nWhen connected, Univo will read your live attendance. Meanwhile, the Attendance Tracker gives exact numbers for every subject.",
   },
   {
     id: "p4",
@@ -50,4 +50,4 @@ export const SAMPLE_PROMPTS = [
 ];
 
 export const NOT_CONNECTED_REPLY =
-  "CampusPulse AI isn't connected to an AI service yet, so I can't answer custom questions. Try one of the sample prompts to see the kind of help this assistant will offer.";
+  "Univo isn't connected to an AI service yet, so I can't answer custom questions. Try one of the sample prompts to see the kind of help this assistant will offer.";

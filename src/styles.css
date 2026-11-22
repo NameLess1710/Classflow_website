@@ -58,7 +58,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* CampusPulse palette (dark academic theme, applied everywhere) */
+/* Univo palette (dark academic theme, applied everywhere) */
 :root {
   --radius: 0.875rem;
   --background: oklch(0.177 0.034 269.6); /* #0B1020 */

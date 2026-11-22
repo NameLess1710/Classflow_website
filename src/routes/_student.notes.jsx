@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { BookOpen, Download, Plus, Search, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -15,7 +15,6 @@ import { SUBJECT_NAMES } from "@/lib/sample-data";
 import { newId, notesStore } from "@/lib/stores";
 import { formatDate, isoDaysFromNow, relativeDayLabel } from "@/lib/dates";
 import { pageHead } from "@/lib/seo";
-import type { StudyNote } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/notes")({
@@ -23,7 +22,7 @@ export const Route = createFileRoute("/_student/notes")({
   component: NotesPage,
 });
 
-const kindTone: Record<StudyNote["kind"], string> = {
+const kindTone = {
   PDF: "bg-destructive/15 text-destructive",
   DOCX: "bg-cyan/15 text-cyan",
   PPT: "bg-warning/15 text-warning",
@@ -35,14 +34,14 @@ function NotesPage() {
   const [query, setQuery] = useState("");
   const [subject, setSubject] = useState("all");
   const [adding, setAdding] = useState(false);
-  const [viewing, setViewing] = useState<StudyNote | null>(null);
+  const [viewing, setViewing] = useState(null);
 
   const filtered = notes
     .filter((n) => subject === "all" || n.subject === subject)
     .filter((n) => `${n.title} ${n.content} ${n.tags.join(" ")}`.toLowerCase().includes(query.toLowerCase()))
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
-  const remove = (id: string) => {
+  const remove = (id) => {
     setNotes((ns) => ns.filter((n) => n.id !== id));
     setViewing(null);
     toast.success("Note deleted");
@@ -170,14 +169,14 @@ function NotesPage() {
   );
 }
 
-function AddNoteDialog({ open, onOpenChange, onSave }: { open: boolean; onOpenChange: (o: boolean) => void; onSave: (n: StudyNote) => void }) {
+function AddNoteDialog({ open, onOpenChange, onSave }) {
   const [title, setTitle] = useState("");
-  const [subject, setSubject] = useState<string>(SUBJECT_NAMES[0] ?? "");
+  const [subject, setSubject] = useState(SUBJECT_NAMES[0] ?? "");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState("");
   const [error, setError] = useState("");
 
-  const submit = (e: FormEvent) => {
+  const submit = (e) => {
     e.preventDefault();
     if (!title.trim() || !content.trim()) {
       setError("Add a title and some content.");

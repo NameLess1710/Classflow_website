@@ -10,7 +10,6 @@ import { sampleExams } from "@/lib/sample-data";
 import { daysUntil, formatDate, relativeDayLabel } from "@/lib/dates";
 import { formatTime } from "@/lib/selectors";
 import { pageHead } from "@/lib/seo";
-import type { Exam } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_student/exams")({
@@ -18,7 +17,7 @@ export const Route = createFileRoute("/_student/exams")({
   component: ExamsPage,
 });
 
-const typeTone: Record<Exam["type"], string> = {
+const typeTone = {
   "Mid-Semester": "border-primary/30 bg-primary/10 text-primary",
   "End-Semester": "border-destructive/30 bg-destructive/10 text-destructive",
   "Lab Exam": "border-cyan/30 bg-cyan/10 text-cyan",
@@ -35,11 +34,11 @@ const GUIDELINES = [
 
 function ExamsPage() {
   const exams = useMemo(() => sampleExams().sort((a, b) => a.date.localeCompare(b.date)), []);
-  const [filter, setFilter] = useState<"All" | Exam["type"]>("All");
+  const [filter, setFilter] = useState("All");
   const upcoming = exams.filter((e) => daysUntil(e.date) >= 0);
   const next = upcoming[0];
   const shown = exams.filter((e) => filter === "All" || e.type === filter);
-  const types = ["All", ...Array.from(new Set(exams.map((e) => e.type)))] as ("All" | Exam["type"])[];
+  const types = ["All", ...Array.from(new Set(exams.map((e) => e.type)))];
 
   return (
     <div>
