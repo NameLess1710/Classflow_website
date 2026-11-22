@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { NAV_ITEMS } from "@/lib/nav";
+import { NAV_ITEMS } from "@/data/nav";
 
 export function QuickAccess() {
   return (

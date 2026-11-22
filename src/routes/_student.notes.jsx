@@ -11,11 +11,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { SUBJECT_NAMES } from "@/lib/sample-data";
-import { newId, notesStore } from "@/lib/stores";
-import { formatDate, isoDaysFromNow, relativeDayLabel } from "@/lib/dates";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { SUBJECT_NAMES } from "@/data/sample-data";
+import { newId, notesStore } from "@/storage/app-stores";
+import { formatDate, isoDaysFromNow, relativeDayLabel } from "@/utils/dates";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/notes")({
   head: () => pageHead("Study Notes", "Your personal notes and faculty-shared study documents, organised by subject."),

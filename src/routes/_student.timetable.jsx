@@ -3,11 +3,11 @@ import { useMemo, useState } from "react";
 import { Clock, MapPin, User } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Chip } from "@/components/common/Chip";
-import { sampleTimetable } from "@/lib/sample-data";
-import { WEEKDAYS, todayWeekday } from "@/lib/dates";
-import { classesFor, formatTime, slotState } from "@/lib/selectors";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { sampleTimetable } from "@/data/sample-data";
+import { WEEKDAYS, todayWeekday } from "@/utils/dates";
+import { classesFor, formatTime, slotState } from "@/utils/selectors";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/timetable")({
   head: () => pageHead("Timetable", "Your weekly class schedule with rooms, faculty, labs and tutorials."),

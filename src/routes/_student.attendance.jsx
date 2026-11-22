@@ -10,12 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { attendanceStatus } from "@/lib/academics";
-import { attendanceStore, newId, settingsStore } from "@/lib/stores";
-import { overallAttendance } from "@/lib/selectors";
-import { attendanceTone } from "@/lib/tones";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { attendanceStatus } from "@/utils/academics";
+import { attendanceStore, newId, settingsStore } from "@/storage/app-stores";
+import { overallAttendance } from "@/utils/selectors";
+import { attendanceTone } from "@/utils/tones";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/attendance")({
   head: () => pageHead("Attendance Tracker", "Track attendance per subject and see how many classes you can miss or must attend under the 75% rule."),

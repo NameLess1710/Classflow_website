@@ -6,7 +6,7 @@ import { SidebarNav } from "@/components/layout/SidebarNav";
 import { Topbar } from "@/components/layout/Topbar";
 import { PageSearch } from "@/components/layout/PageSearch";
 import { LogoMark } from "@/components/brand/Logo";
-import { sessionStore } from "@/lib/stores";
+import { sessionStore } from "@/storage/app-stores";
 
 export const Route = createFileRoute("/_student")({
   component: StudentLayout,

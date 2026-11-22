@@ -13,12 +13,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { assignmentsStore, newId } from "@/lib/stores";
-import { SUBJECT_NAMES } from "@/lib/sample-data";
-import { daysUntil, formatDate, isoDaysFromNow, relativeDayLabel } from "@/lib/dates";
-import { priorityTone } from "@/lib/tones";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { assignmentsStore, newId } from "@/storage/app-stores";
+import { SUBJECT_NAMES } from "@/data/sample-data";
+import { daysUntil, formatDate, isoDaysFromNow, relativeDayLabel } from "@/utils/dates";
+import { priorityTone } from "@/utils/tones";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/assignments")({
   head: () => pageHead("Assignments", "Track assignment deadlines by subject and priority, and mark work as completed."),

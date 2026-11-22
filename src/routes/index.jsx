@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { profileStore, sessionStore } from "@/lib/stores";
+import { profileStore, sessionStore } from "@/storage/app-stores";
 
 export const Route = createFileRoute("/")({
   head: () => ({

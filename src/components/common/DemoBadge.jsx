@@ -1,5 +1,5 @@
 import { FlaskConical } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 export function DemoBadge({ label = "Demo placeholder", className }) {
   return (

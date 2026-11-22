@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { LogOut } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
-import { NAV_GROUPS, NAV_ITEMS } from "@/lib/nav";
-import { cn } from "@/lib/utils";
+import { NAV_GROUPS, NAV_ITEMS } from "@/data/nav";
+import { cn } from "@/utils/class-names";
 
 export function SidebarNav({ onNavigate, onLogout }) {
   return (

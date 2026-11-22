@@ -18,11 +18,11 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { SectionCard } from "@/components/common/SectionCard";
 import { Chip } from "@/components/common/Chip";
 import { Button } from "@/components/ui/button";
-import { sampleCalendarEvents } from "@/lib/sample-data";
-import { daysUntil, formatDate, relativeDayLabel } from "@/lib/dates";
-import { eventTone } from "@/lib/tones";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { sampleCalendarEvents } from "@/data/sample-data";
+import { daysUntil, formatDate, relativeDayLabel } from "@/utils/dates";
+import { eventTone } from "@/utils/tones";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/calendar")({
   head: () => pageHead("Academic Calendar", "Holidays, exams, events and academic deadlines for the semester in a monthly calendar."),

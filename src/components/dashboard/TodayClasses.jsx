@@ -1,10 +1,10 @@
 import { CalendarClock, MapPin } from "lucide-react";
 import { SectionCard } from "@/components/common/SectionCard";
 import { Chip } from "@/components/common/Chip";
-import { classesFor, formatTime, slotState, todaysClasses } from "@/lib/selectors";
-import { sampleTimetable } from "@/lib/sample-data";
-import { todayWeekday } from "@/lib/dates";
-import { cn } from "@/lib/utils";
+import { classesFor, formatTime, slotState, todaysClasses } from "@/utils/selectors";
+import { sampleTimetable } from "@/data/sample-data";
+import { todayWeekday } from "@/utils/dates";
+import { cn } from "@/utils/class-names";
 import { useMemo } from "react";
 
 export function TodayClasses({ className }) {

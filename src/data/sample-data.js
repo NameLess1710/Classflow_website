@@ -2,7 +2,7 @@
  * Realistic demo data. Every export is a function so dates are computed at runtime
  * relative to today (module-scope Date is unsafe on the edge runtime).
  */
-import { isoDaysFromNow } from "./dates";
+import { isoDaysFromNow } from "@/utils/dates";
 
 export const COLLEGE_NAME = "Greenfield Institute of Technology";
 

@@ -3,9 +3,9 @@ import { SectionCard } from "@/components/common/SectionCard";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { MAX_GRADE_POINT, requiredGpaForTarget } from "@/lib/academics";
-import { cgpaGoalStore } from "@/lib/stores";
-import { cn } from "@/lib/utils";
+import { MAX_GRADE_POINT, requiredGpaForTarget } from "@/utils/academics";
+import { cgpaGoalStore } from "@/storage/app-stores";
+import { cn } from "@/utils/class-names";
 
 export function TargetSimulator({ currentCgpa, completedCredits }) {
   const [goal, setGoal] = cgpaGoalStore.useStore();

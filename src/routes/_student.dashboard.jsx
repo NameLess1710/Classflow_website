@@ -14,14 +14,14 @@ import { SectionCard } from "@/components/common/SectionCard";
 import { StatCard } from "@/components/common/StatCard";
 import { Chip } from "@/components/common/Chip";
 import { TodayClasses } from "@/components/dashboard/TodayClasses";
-import { attendanceStatus, cgpa } from "@/lib/academics";
-import { daysUntil, formatDate, relativeDayLabel } from "@/lib/dates";
-import { sampleExams, sampleTimetable } from "@/lib/sample-data";
-import { overallAttendance, todaysClasses } from "@/lib/selectors";
-import { assignmentsStore, attendanceStore, profileStore, semestersStore, settingsStore } from "@/lib/stores";
-import { attendanceTone, priorityTone } from "@/lib/tones";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { attendanceStatus, cgpa } from "@/utils/academics";
+import { daysUntil, formatDate, relativeDayLabel } from "@/utils/dates";
+import { sampleExams, sampleTimetable } from "@/data/sample-data";
+import { overallAttendance, todaysClasses } from "@/utils/selectors";
+import { assignmentsStore, attendanceStore, profileStore, semestersStore, settingsStore } from "@/storage/app-stores";
+import { attendanceTone, priorityTone } from "@/utils/tones";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/dashboard")({
   head: () => pageHead("Dashboard", "Today's classes, upcoming deadlines and your academic stats at a glance."),

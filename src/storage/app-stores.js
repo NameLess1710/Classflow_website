@@ -1,4 +1,4 @@
-import { createPersistedStore } from "./store";
+import { createPersistedStore } from "./persisted-store";
 import {
   defaultProfile,
   defaultSettings,
@@ -6,7 +6,7 @@ import {
   sampleAttendance,
   sampleNotes,
   sampleSemesters,
-} from "./sample-data";
+} from "@/data/sample-data";
 
 export const sessionStore = createPersistedStore("session", () => ({ loggedIn: false }));
 export const profileStore = createPersistedStore("profile", defaultProfile);

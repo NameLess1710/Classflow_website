@@ -6,12 +6,12 @@ import { Chip } from "@/components/common/Chip";
 import { EmptyState } from "@/components/common/EmptyState";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { sampleNotices } from "@/lib/sample-data";
-import { readNoticesStore } from "@/lib/stores";
-import { formatDate, relativeDayLabel } from "@/lib/dates";
-import { noticeTone } from "@/lib/tones";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { sampleNotices } from "@/data/sample-data";
+import { readNoticesStore } from "@/storage/app-stores";
+import { formatDate, relativeDayLabel } from "@/utils/dates";
+import { noticeTone } from "@/utils/tones";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/notices")({
   head: () => pageHead("Notices", "Official college announcements: exams, placements, events, hostel and library updates."),

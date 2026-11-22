@@ -10,10 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LogoMark } from "@/components/brand/Logo";
-import { NAV_ITEMS } from "@/lib/nav";
-import { profileStore, readNoticesStore } from "@/lib/stores";
-import { initials } from "@/lib/tones";
-import { sampleNotices } from "@/lib/sample-data";
+import { NAV_ITEMS } from "@/data/nav";
+import { profileStore, readNoticesStore } from "@/storage/app-stores";
+import { initials } from "@/utils/tones";
+import { sampleNotices } from "@/data/sample-data";
 import { useMemo } from "react";
 
 export function Topbar({ onMenu, onLogout, onSearch }) {

@@ -5,9 +5,9 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { SectionCard } from "@/components/common/SectionCard";
 import { Meter } from "@/components/common/Meter";
-import { attendancePercent, attendanceStatus } from "@/lib/academics";
-import { attendanceTone } from "@/lib/tones";
-import { cn } from "@/lib/utils";
+import { attendancePercent, attendanceStatus } from "@/utils/academics";
+import { attendanceTone } from "@/utils/tones";
+import { cn } from "@/utils/class-names";
 
 function toInt(v) {
   const n = parseInt(v, 10);

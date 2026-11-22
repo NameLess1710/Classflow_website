@@ -1,7 +1,7 @@
-import "./lib/error-capture";
+import "@/error-handling/error-capture";
 
-import { consumeLastCapturedError } from "./lib/error-capture";
-import { renderErrorPage } from "./lib/error-page";
+import { consumeLastCapturedError } from "@/error-handling/error-capture";
+import { renderErrorPage } from "@/error-handling/error-page";
 
 let serverEntryPromise;
 

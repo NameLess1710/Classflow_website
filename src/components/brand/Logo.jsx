@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 /** Univo brand mark: a pulse line rising into a graduation-cap peak. */
 export function LogoMark({ className }) {

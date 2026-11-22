@@ -21,10 +21,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { DEPARTMENTS } from "@/lib/sample-data";
-import { profileStore, resetDemoData, settingsStore } from "@/lib/stores";
-import { initials } from "@/lib/tones";
-import { pageHead } from "@/lib/seo";
+import { DEPARTMENTS } from "@/data/sample-data";
+import { profileStore, resetDemoData, settingsStore } from "@/storage/app-stores";
+import { initials } from "@/utils/tones";
+import { pageHead } from "@/utils/seo";
 
 export const Route = createFileRoute("/_student/profile")({
   head: () => pageHead("Profile & Settings", "Update your student profile, notification preferences and attendance requirement."),

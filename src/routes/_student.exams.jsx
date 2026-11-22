@@ -6,11 +6,11 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { SectionCard } from "@/components/common/SectionCard";
 import { Chip } from "@/components/common/Chip";
 import { Button } from "@/components/ui/button";
-import { sampleExams } from "@/lib/sample-data";
-import { daysUntil, formatDate, relativeDayLabel } from "@/lib/dates";
-import { formatTime } from "@/lib/selectors";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { sampleExams } from "@/data/sample-data";
+import { daysUntil, formatDate, relativeDayLabel } from "@/utils/dates";
+import { formatTime } from "@/utils/selectors";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/exams")({
   head: () => pageHead("Exam Information", "Exam dates, timings, venues, seat numbers and syllabus for your upcoming exams."),

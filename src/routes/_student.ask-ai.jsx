@@ -6,11 +6,11 @@ import { DemoBadge } from "@/components/common/DemoBadge";
 import { SectionCard } from "@/components/common/SectionCard";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { NOT_CONNECTED_REPLY, SAMPLE_PROMPTS } from "@/lib/ai-demo";
-import { profileStore } from "@/lib/stores";
-import { initials } from "@/lib/tones";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { NOT_CONNECTED_REPLY, SAMPLE_PROMPTS } from "@/data/ai-demo";
+import { profileStore } from "@/storage/app-stores";
+import { initials } from "@/utils/tones";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/ask-ai")({
   head: () => pageHead("Ask Univo", "Preview the Univo study assistant with interactive sample prompts. AI is not connected yet."),

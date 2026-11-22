@@ -7,7 +7,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { NAV_GROUPS, NAV_ITEMS } from "@/lib/nav";
+import { NAV_GROUPS, NAV_ITEMS } from "@/data/nav";
 
 export function PageSearch({ open, onOpenChange }) {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 /** Horizontal progress meter with an optional threshold marker (e.g. 75% attendance). */
 export function Meter({

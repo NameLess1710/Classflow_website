@@ -10,10 +10,10 @@ import { TargetSimulator } from "@/components/cgpa/TargetSimulator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { GRADES, GRADE_POINTS, cgpa, gpa, totalCredits } from "@/lib/academics";
-import { newId, semestersStore } from "@/lib/stores";
-import { pageHead } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { GRADES, GRADE_POINTS, cgpa, gpa, totalCredits } from "@/utils/academics";
+import { newId, semestersStore } from "@/storage/app-stores";
+import { pageHead } from "@/utils/seo";
+import { cn } from "@/utils/class-names";
 
 export const Route = createFileRoute("/_student/cgpa")({
   head: () => pageHead("CGPA & Grade Calculator", "Calculate SGPA and CGPA on the 10-point scale and simulate the grades you need to hit your target."),

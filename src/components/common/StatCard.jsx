@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 const tones = {
   primary: "bg-primary/15 text-primary",

@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { COLLEGE_NAME, DEPARTMENTS, defaultProfile } from "@/lib/sample-data";
-import { profileStore, sessionStore } from "@/lib/stores";
+import { COLLEGE_NAME, DEPARTMENTS, defaultProfile } from "@/data/sample-data";
+import { profileStore, sessionStore } from "@/storage/app-stores";
 
 export const Route = createFileRoute("/register")({
   head: () => ({
